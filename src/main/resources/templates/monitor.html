@@ -13,8 +13,7 @@
 
 <div id="London" class="tabcontent">
     <div class="grid-container">
-        <div class="grid-item" th:each="stat : ${status}" th:style="'background-color: red'">1</div>
-
+        <div class="grid-item" th:each="stat : ${allStatus}" th:style="'background-color:' + ${stat.colour}" th:text="${stat.name}"></div>
     </div>
 </div>
 

@@ -16,7 +16,7 @@ public class MonitorController {
 
     @GetMapping("/test")
     public String monitor(Model model){
-        model.addAttribute("status", statusService.generateStatus());
+        model.addAttribute("allStatus", statusService.generateStatus());
         return "monitor";
     }
 }
