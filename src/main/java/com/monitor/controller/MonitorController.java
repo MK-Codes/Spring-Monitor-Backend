@@ -1,5 +1,7 @@
 package com.monitor.controller;
 
+import com.monitor.service.StatusService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,8 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/monitor")
 public class MonitorController {
 
-    @GetMapping
+    @Autowired
+    private StatusService statusService;
+
+    @GetMapping("/test")
     public String monitor(Model model){
+        model.addAttribute("status", statusService.generateStatus());
         return "monitor";
     }
 }

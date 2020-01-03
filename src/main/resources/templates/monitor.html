@@ -3,10 +3,37 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Front end</title>
-
+    <link rel="stylesheet" type="text/css" th:href="@{/css/stylesheet.css}" />
 </head>
 <body>
-<h1>Hello world</h1>
+<div class="tab">
+    <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">London</button>
+</div>
+
+<div id="London" class="tabcontent">
+    <div class="grid-container">
+        <div class="grid-item" th:each="stat : ${status}" th:style="'background-color: red'">1</div>
+
+    </div>
+</div>
+
+<script>
+window.scrollTo(0,document.body.scrollHeight);
+document.getElementById("defaultOpen").click();
+function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+</script>
 
 </body>
 </html>
