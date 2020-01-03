@@ -7,6 +7,15 @@
 </head>
 <body>
 <h1>Hello world</h1>
-
+<h2 th:each="$(JobStatus)">Hell is among us</h2>
+<p th:text="$(JobStatus.description)"></p>
+<p th:text="$(JobStatus.name)"></p>
+<p th:text="$(JobStatus.jsonFileName)"></p>
+<p th:text="$(JobStatus.id)"></p>
+<p th:text="$(JobStatus.status)"></p>
+<ul th:each="$(JobStatus.links)">
+    <li th:text="$(JobStatus.links.link)"></li>
+    <li th:text="$(JobStatus.links.rel"></li>
+</ul>
 </body>
 </html>
