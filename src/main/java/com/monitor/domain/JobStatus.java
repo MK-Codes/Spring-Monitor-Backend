@@ -15,6 +15,8 @@ public class JobStatus {
     private String name;
     private String jsonFileName;
     private int id;
-    private String status;
+    private Status status;
     private List<Links> links;
+
+
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @Slf4j
@@ -21,9 +22,13 @@ public class JobStatusService {
     @Autowired
     private Gson gson;
 
+    @Autowired
+    private String jsonURL;
+
     public List<JobStatus> generateJobStatus(){
-        String jobStatusFile = restTemplate.getForObject("https://mk-codes.co.uk/json", String.class);
+        String jobStatusFile = restTemplate.getForObject(jsonURL, String.class);
         List<JobStatus> allJobStatus = gson.fromJson(jobStatusFile, new TypeToken<List<JobStatus>>() {}.getType());
+        Collections.sort(allJobStatus, new JobStatusComparitor());
         return allJobStatus;
     }
 
