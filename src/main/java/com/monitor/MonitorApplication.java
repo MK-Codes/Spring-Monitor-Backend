@@ -2,6 +2,7 @@ package com.monitor;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.monitor.domain.JobStatus;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -71,11 +72,10 @@ public class MonitorApplication {
 	@Bean
 	public CommandLineRunner run(RestTemplate restTemplate, Gson gson) throws Exception {
 		return args -> {
-			String jobStatusFile = restTemplate.getForObject(
-					"https://mk-codes.co.uk/json", String.class);
+			String jobStatusFile = restTemplate.getForObject("https://mk-codes.co.uk/json", String.class);
 			System.out.println(jobStatusFile);
-			/*List<JobStatus> jobStatus = gson.fromJson(jobStatusFile, new TypeToken<List<JobStatus>>() {}.getType());
-			System.out.println(jobStatus);*/
+			List<JobStatus> jobStatus = gson.fromJson(jobStatusFile, new TypeToken<List<JobStatus>>() {}.getType());
+			System.out.println(jobStatus);
 		};
 	}
 }

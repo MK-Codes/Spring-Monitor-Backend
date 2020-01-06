@@ -1,22 +1,28 @@
 package com.monitor.controller;
 
-import com.monitor.service.StatusService;
+import com.monitor.domain.JobStatus;
+import com.monitor.service.JobStatusService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
+@Slf4j
 @Controller
 @RequestMapping("/monitor")
 public class MonitorController {
 
     @Autowired
-    private StatusService statusService;
+    private JobStatusService statusService;
 
     @GetMapping("/test")
     public String monitor(Model model){
-        model.addAttribute("allStatus", statusService.generateStatus());
+        List<JobStatus> allJobs = statusService.generateJobStatus();
+        model.addAttribute("allJobs", allJobs);
         return "monitor";
     }
 }

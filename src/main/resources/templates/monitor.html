@@ -8,12 +8,16 @@
 <body>
 
 <div class="tab">
-    <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">London</button>
+    <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">Monitor</button>
 </div>
 
 <div id="London" class="tabcontent">
     <div class="grid-container">
-        <div class="grid-item" th:each="stat : ${allStatus}" th:style="'background-color:' + ${stat.colour}" th:text="${stat.name}"></div>
+        <div class="grid-item" th:each="job : ${allJobs}" th:id="${job.status}">
+            <div class="grid-item-inner">
+                <p class="monitor-content" th:utext="${job.description}" style="text-align:center;">Description goes </br>here</p>
+            </div>
+        </div>
     </div>
 </div>
 

@@ -1,4 +1,4 @@
-package com.monitor;
+package com.monitor.domain;
 
 import lombok.*;
 
