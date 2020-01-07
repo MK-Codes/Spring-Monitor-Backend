@@ -4,6 +4,7 @@
 <head>
     <title>Monitor</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/stylesheet.css}" />
+    <meta http-equiv="refresh" content="20" >
 </head>
 <body>
 
@@ -38,9 +39,6 @@ function openTab(evt, tabName) {
   document.getElementById(tabName).style.display = "block";
   evt.currentTarget.className += " active";
 }
-var timer = setTimeout(function() {
-            window.location='http://prdcldsbll03:7777/server_html_file/server_view.htm'
-        }, 20000);
 </script>
 </body>
 </html>

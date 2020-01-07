@@ -31,7 +31,7 @@ public class DevConfig {
     @Bean
     public RestTemplate restTemplate(RestTemplateBuilder builder) throws NoSuchAlgorithmException, KeyManagementException {
         SimpleClientHttpRequestFactory requestFactory = new SimpleClientHttpRequestFactory();
-        Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("proxy.tcsdbs.com", 80));
+        Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("", 80));
         requestFactory.setProxy(proxy);
 
         SSLContext ctx = SSLContext.getInstance("TLS");

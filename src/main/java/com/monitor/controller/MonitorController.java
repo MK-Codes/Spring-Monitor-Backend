@@ -19,10 +19,17 @@ public class MonitorController {
     @Autowired
     private JobStatusService statusService;
 
-    @GetMapping()
+    @GetMapping
     public String monitor(Model model){
         List<JobStatus> allJobs = statusService.generateJobStatus();
         model.addAttribute("allJobs", allJobs);
         return "monitor";
+    }
+
+    @GetMapping("/static")
+    public String monitorStatic(Model model) {
+        List<JobStatus> allJobs = statusService.generateJobStatus();
+        model.addAttribute("allJobs", allJobs);
+        return "monitor_static";
     }
 }
