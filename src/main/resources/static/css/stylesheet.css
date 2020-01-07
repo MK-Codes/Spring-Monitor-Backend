@@ -51,34 +51,33 @@ body {font-family: Arial;}
   background-color: none;
   /*border: 0.5px solid rgba(0, 0, 0, 0.8);*/
   padding: 20px;
+  margin:2px;
   font-size: 30px;
   /*text-align: center;*/
 }
 
 #RED{
-    background-color:red;
+    background-color:#da2525;
     -webkit-animation-name: example; /* Safari 4.0 - 8.0 */
     -webkit-animation-duration: 4s; /* Safari 4.0 - 8.0 */
     animation: example 1s infinite;
     animation-direction: alternate;
-    color: white;
-
 }
 
 /* Safari 4.0 - 8.0 */
 @-webkit-keyframes example {
   from {background-color: red;}
-  to {background-color: #990000;}
+  to {background-color: #821111;}
 }
 
 /* Standard syntax */
 @keyframes example {
   from {background-color: red;}
-  to {background-color: #990000;}
+  to {background-color: #821111;}
 }
 
 #GREEN{
-    background-color:#00b200;
+    background-color:#2b922b;
 }
 
 #BLUE{
@@ -86,17 +85,25 @@ body {font-family: Arial;}
 }
 
 #AMBER{
-    background-color:#FF981C;
+    background-color:#ec7c20;
 }
 
 #GREY{
-    background-color:#D3D3D3;
+    background-color:#ddd;
 }
 
 #RED, #GREEN, #AMBER, #BLUE, #GREY{
     word-break:break-word;
     position: relative;
+    transition: transform .2s;
+    border-radius: 3px;
+    color: white;
 }
+
+#RED:hover, #GREEN:hover, #AMBER:hover, #BLUE:hover, #GREY:hover{
+    transform:scale(1.03);
+}
+
 
 .monitor-content{
     font-size:2.5vh;
@@ -108,3 +115,12 @@ body {font-family: Arial;}
     top: 50%; left: 50%;
     transform: translate(-50%,-50%);
 }
+
+@media screen and (max-width: 600px) {
+    .grid-container {
+      grid-template-columns: 100%;
+      /*background-color: #2196F3;*/
+      /*padding: 10px;*/
+    }
+}
+

@@ -15,7 +15,7 @@
     <div class="grid-container">
         <div class="grid-item" th:each="job : ${allJobs}" th:id="${job.status}">
             <div class="grid-item-inner">
-                <p class="monitor-content" th:utext="${job.description}" style="text-align:center;">Description goes </br>here</p>
+                <p class="monitor-content" th:utext="${job.description}" style="text-align:center;">Description goes here</p>
             </div>
         </div>
     </div>

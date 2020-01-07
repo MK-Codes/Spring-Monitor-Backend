@@ -17,6 +17,4 @@ public class JobStatus {
     private int id;
     private Status status;
     private List<Links> links;
-
-
 }

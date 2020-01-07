@@ -19,7 +19,7 @@ public class MonitorController {
     @Autowired
     private JobStatusService statusService;
 
-    @GetMapping("/test")
+    @GetMapping()
     public String monitor(Model model){
         List<JobStatus> allJobs = statusService.generateJobStatus();
         model.addAttribute("allJobs", allJobs);
