@@ -100,11 +100,6 @@ body {font-family: Arial;}
     color: white;
 }
 
-#RED:hover, #GREEN:hover, #AMBER:hover, #BLUE:hover, #GREY:hover{
-    transform:scale(1.03);
-}
-
-
 .monitor-content{
     font-size:2.5vh;
 }
