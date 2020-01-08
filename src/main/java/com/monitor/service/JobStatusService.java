@@ -29,10 +29,8 @@ public class JobStatusService {
     public List<JobStatus> generateJobStatus(){
         String jobStatusFile = restTemplate.getForObject(jsonURL, String.class);
         List<JobStatus> allJobStatus = gson.fromJson(jobStatusFile, new TypeToken<List<JobStatus>>() {}.getType());
-
         Collections.sort(allJobStatus, new JobStatusComparitor());
         allJobStatus = replaceNewLine(allJobStatus);
-        System.out.println(allJobStatus);
         return allJobStatus;
     }
 

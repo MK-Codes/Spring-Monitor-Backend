@@ -3,28 +3,21 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Monitor</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/stylesheet.css}" />
-<!--    <meta http-equiv="refresh" content="20" > -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/stylesheet.css}"/>
+    <!--    <meta http-equiv="refresh" content="20" > -->
 </head>
 <body>
 
 <div class="tab">
     <button class="tablinks" onclick="openTab(event, 'Monitor')" id="defaultOpen">Monitor</button>
 </div>
+<div class="mainContainer">
+        <div id="Monitor" class="tabcontent">
 
-<div id="Monitor" class="tabcontent">
-    <div class="grid-container">
-        <div class="grid-item" th:each="job : ${allJobs}" th:id="${job.status}">
-            <div class="grid-item-inner">
-                <p class="monitor-content" th:utext="${job.description}" style="text-align:center;">Description goes here</p>
-            </div>
         </div>
-    </div>
 </div>
-
 <script>
 
-window.scrollTo(0,document.body.scrollHeight);
 document.getElementById("defaultOpen").click();
 function openTab(evt, tabName) {
   var i, tabcontent, tablinks;
@@ -39,18 +32,31 @@ function openTab(evt, tabName) {
   document.getElementById(tabName).style.display = "block";
   evt.currentTarget.className += " active";
 }
-window.setInterval(refreshData, 5000);
-function refreshData() {
 
+
+<!--POPULATE OBJ HERE-->
+window.onload = function refreshData() {
   fetch("https://cors-anywhere.herokuapp.com/https://mk-codes.co.uk/json")
   .then(response => response.text())
         .then((response) => {
-            alert(response)
+            var OBJ = JSON.parse(response);
+            var txt = "<div class=\"grid-container\">";
+            for(var i = 0; i < OBJ.length; i++){
+                txt = txt +
+                "<div class=\"grid-item\" id=\"" + OBJ[i].status + "\""+
+                    "><div class=\"grid-item-inner\">" +
+                        "<p class=\"monitor-content\" style=\"text-align:center;\">" + OBJ[i].description + "</p>" +
+                     "</div>" +
+                "</div>";
+            }
+            txt = txt+ "</div>";
+            document.getElementById("Monitor").innerHTML = txt;
+            console.log(txt)
         })
   .catch(function(error) {
-    alert(error.blob())
   });
 }
+
 </script>
 </body>
 </html>
