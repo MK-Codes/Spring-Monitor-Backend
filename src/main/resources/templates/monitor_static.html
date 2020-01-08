@@ -4,7 +4,7 @@
 <head>
     <title>Monitor</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/stylesheet.css}" />
-    <meta http-equiv="refresh" content="20" >
+<!--    <meta http-equiv="refresh" content="20" > -->
 </head>
 <body>
 
@@ -38,6 +38,18 @@ function openTab(evt, tabName) {
   }
   document.getElementById(tabName).style.display = "block";
   evt.currentTarget.className += " active";
+}
+window.setInterval(refreshData, 5000);
+function refreshData() {
+
+  fetch("https://cors-anywhere.herokuapp.com/https://mk-codes.co.uk/json")
+  .then(response => response.text())
+        .then((response) => {
+            alert(response)
+        })
+  .catch(function(error) {
+    alert(error.blob())
+  });
 }
 </script>
 </body>

@@ -41,6 +41,12 @@ function openTab(evt, tabName) {
 var timer = setTimeout(function() {
             window.location='http://prdcldsbll03:7777/server_html_file/server_view.htm'
         }, 20000);
+
+
+       window.setInterval(refreshData, 5_000);
+       function refreshData() {
+       alert("test");
+       }
 </script>
 </body>
 </html>
