@@ -28,8 +28,8 @@ public class MonitorController {
 
     @GetMapping("/static")
     public String monitorStatic(Model model) {
-        List<JobStatus> allJobs = statusService.generateJobStatus();
-        model.addAttribute("allJobs", allJobs);
+        //List<JobStatus> allJobs = statusService.generateJobStatus();
+        //model.addAttribute("allJobs", allJobs);
         return "monitor_static";
     }
 }
