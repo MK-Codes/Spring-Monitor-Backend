@@ -20,6 +20,7 @@ function openTab(evt, tabName) {
 }
 
 function refreshData() {
+console.log("Fetching data...");
   fetch("https://mk-codes.co.uk/json", {cache: "no-store"})
   .then(response => response.text())
         .then((response) => {
@@ -59,4 +60,6 @@ function refreshData() {
   console.error("Something died!");
   });
 }
+
 window.onload = window.setInterval(refreshData, 20_000);
+window.onload(refreshData());

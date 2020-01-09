@@ -40,8 +40,8 @@ public class MonitorApplication {
 	@Bean
 	public CommandLineRunner run(RestTemplate restTemplate, Gson gson, String jsonURL) throws Exception {
 		return args -> {
-			String jobStatusFile = restTemplate.getForObject(jsonURL, String.class);
-			System.out.println(jobStatusFile);
+			//String jobStatusFile = restTemplate.getForObject(jsonURL, String.class);
+			//System.out.println(jobStatusFile);
 //			List<JobStatus> jobStatus = gson.fromJson(jobStatusFile, new TypeToken<List<JobStatus>>() {}.getType());
 
 //			System.out.println(jobStatus);
