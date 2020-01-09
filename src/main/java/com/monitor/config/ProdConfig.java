@@ -14,7 +14,7 @@ public class ProdConfig {
     @Bean
     public String jsonURL() {
         log.info("Using production URL");
-        return "http://petcldiaml05:8080/DMSRest/rest/cobject/all";
+        return "";
     }
 
     @Bean

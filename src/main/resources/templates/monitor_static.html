@@ -4,7 +4,6 @@
 <head>
     <title>Monitor</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/stylesheet.css}"/>
-    <!--    <meta http-equiv="refresh" content="20" > -->
 </head>
 <body>
 
@@ -16,47 +15,11 @@
 
         </div>
 </div>
-<script>
 
-document.getElementById("defaultOpen").click();
-function openTab(evt, tabName) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-  document.getElementById(tabName).style.display = "block";
-  evt.currentTarget.className += " active";
-}
-
-
-<!--POPULATE OBJ HERE-->
-window.onload = function refreshData() {
-  fetch("https://cors-anywhere.herokuapp.com/https://mk-codes.co.uk/json")
-  .then(response => response.text())
-        .then((response) => {
-            var OBJ = JSON.parse(response);
-            var txt = "<div class=\"grid-container\">";
-            for(var i = 0; i < OBJ.length; i++){
-                txt = txt +
-                "<div class=\"grid-item\" id=\"" + OBJ[i].status + "\""+
-                    "><div class=\"grid-item-inner\">" +
-                        "<p class=\"monitor-content\" style=\"text-align:center;\">" + OBJ[i].description + "</p>" +
-                     "</div>" +
-                "</div>";
-            }
-            txt = txt+ "</div>";
-            document.getElementById("Monitor").innerHTML = txt;
-            console.log(txt)
-        })
-  .catch(function(error) {
-  });
-}
-
+<script type="text/javascript" th:src="@{/js/monitor.js}">
+    window.onload = window.setInterval(refreshData, 20_000);
 </script>
+<!--    <script type="text/javascript" th:src="@{/js/object.js}"></script> -->
+
 </body>
 </html>

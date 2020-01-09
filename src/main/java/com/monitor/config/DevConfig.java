@@ -60,6 +60,5 @@ public class DevConfig {
         RestTemplate restTemp = builder.build();
         restTemp.setRequestFactory(requestFactory);
         return restTemp;
-        //return builder.build();
     }
 }
