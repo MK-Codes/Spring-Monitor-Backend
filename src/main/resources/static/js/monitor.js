@@ -1,4 +1,8 @@
+
+
 document.getElementById("defaultOpen").click();
+
+var currentURL="";
 
 function openTab(evt, tabName) {
 
@@ -19,9 +23,57 @@ function openTab(evt, tabName) {
   evt.currentTarget.className += " active";
 }
 
-function refreshData() {
+function generateTabs(){
+    fetch("https://mk-codes.co.uk/json", {cache: "no-store"})
+      .then(response => response.text())
+            .then((response) => {
+                var OBJ = JSON.parse(response);
+                // Sorting the object based on its status
+                // Red will be displayed first, then amber, etc.
+                var allCat = [];
+                for(i = 0; i < OBJ.length; i++){
+                    allCat.push(OBJ[i].category);
+                    }
+                var allCatUnique = Array.from(new Set(allCat));
+                console.log("showing unique tabs")
+                console.log(allCatUnique);
+
+                var toFilterBy = "<a href=\"#\" onclick=\"refreshData('all')\">all</a></br>";
+
+                for(var i = 0; i < allCatUnique.length; i++){
+                    toFilterBy = toFilterBy +
+                    "<a href=\"#\" onclick=\"refreshData('" + allCatUnique[i]+ "')\">"+allCatUnique[i]+"</a> </br>"
+
+                 }
+                 console.log(toFilterBy);
+                 document.getElementById("myBtnContainer").innerHTML = toFilterBy;
+            })
+
+      .catch(function(error) {
+      console.error("Something died!");
+      });
+}
+
+function refreshData(param) {
 console.log("Fetching data...");
-  fetch("https://mk-codes.co.uk/json", {cache: "no-store"})
+  var url = "";
+  if(param){
+          if(param == "all"){
+                url = "https://mk-codes.co.uk/json";
+          }else{
+                url = "https://mk-codes.co.uk/category/"+param;
+          }
+
+          currentURL = url;
+  }else if(currentURL !== ""){
+        url = currentURL;
+  }else if(!param || param === ""){
+        url = "https://mk-codes.co.uk/json";
+  }
+
+  console.log("CURRENT URL" + currentURL);
+
+  fetch(url, {cache: "no-store"})
   .then(response => response.text())
         .then((response) => {
 
@@ -41,7 +93,6 @@ console.log("Fetching data...");
                 }
                 return statusEnum[a.status] - statusEnum[b.status];
             });
-
             console.log("Objects sorted.");
             var txt = "<div class=\"grid-container\">";
             for(var i = 0; i < OBJ.length; i++){
@@ -61,5 +112,6 @@ console.log("Fetching data...");
   });
 }
 
-window.onload = window.setInterval(refreshData, 20_000);
-window.onload(refreshData());
+generateTabs();
+window.onload = window.setInterval(refreshData, 5_000);
+refreshData(currentURL);
