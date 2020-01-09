@@ -40,6 +40,7 @@ function refreshData() {
                 }
                 return statusEnum[a.status] - statusEnum[b.status];
             });
+
             console.log("Objects sorted.");
             var txt = "<div class=\"grid-container\">";
             for(var i = 0; i < OBJ.length; i++){
@@ -57,5 +58,5 @@ function refreshData() {
   .catch(function(error) {
   console.error("Something died!");
   });
-
 }
+window.onload = window.setInterval(refreshData, 20_000);

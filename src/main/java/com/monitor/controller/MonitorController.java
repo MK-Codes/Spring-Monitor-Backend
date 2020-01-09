@@ -32,4 +32,9 @@ public class MonitorController {
         model.addAttribute("allJobs", allJobs);
         return "monitor_static";
     }
+
+    @GetMapping("/test")
+    public String monitorFilter(){
+        return "filter";
+    }
 }
