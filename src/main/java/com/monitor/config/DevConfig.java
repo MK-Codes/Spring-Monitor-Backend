@@ -38,9 +38,14 @@ public class DevConfig {
     }
 
     @Bean
+    public String getProxy(){
+        return environment.getProperty("proxy");
+    }
+
+    @Bean
     public RestTemplate restTemplate(RestTemplateBuilder builder, String getProxy) throws NoSuchAlgorithmException, KeyManagementException {
         SimpleClientHttpRequestFactory requestFactory = new SimpleClientHttpRequestFactory();
-        Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("", 80));
+        Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(getProxy, 80));
         requestFactory.setProxy(proxy);
 
         SSLContext ctx = SSLContext.getInstance("TLS");

@@ -24,8 +24,10 @@ function openTab(evt, tabName) {
 }
 
 function generateTabs() {
-
-    fetch(/*[[${url}}]]*/ "", {
+    var genTabURL = /*[[${url}}]]*/ "";
+    console.log("Hello world");
+    console.log("Gen tab URL: " + genTabURL);
+    /*fetch(*//*[[${url}}]]*//* "", {
         cache: "no-store"
     })
     .then(response => response.text())
@@ -56,7 +58,7 @@ function generateTabs() {
 
     .catch(function (error) {
         console.error("Something died!");
-    });
+    });*/
 }
 
 function refreshData(param) {
