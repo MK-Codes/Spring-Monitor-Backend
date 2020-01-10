@@ -1,28 +1,24 @@
-
-
 document.getElementById("defaultOpen").click();
 
-var code = [[${url}]];
-alert("URL: " + code);
-
+var currentURL="";
 
 function openTab(evt, tabName) {
 
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent");
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
 
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
 
-    tablinks = document.getElementsByClassName("tablinks");
+  tablinks = document.getElementsByClassName("tablinks");
 
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
 
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
+  document.getElementById(tabName).style.display = "block";
+  evt.currentTarget.className += " active";
 }
 
 function generateTabs(){
@@ -40,15 +36,17 @@ function generateTabs(){
                 console.log("showing unique tabs")
                 console.log(allCatUnique);
 
-                var toFilterBy = "<a href=\"#\" onclick=\"refreshData('all')\">all</a></br>";
+//                var toFilterBy = "<a href=\"#\" onclick=\"refreshData('all')\">all</a></br>";
+                var toFilterBy = "<button class=\"tablinks\" onclick=\"refreshData('all')\" id=\"defaultOpen\">Monitor</button>";
 
                 for(var i = 0; i < allCatUnique.length; i++){
                     toFilterBy = toFilterBy +
-                    "<a href=\"#\" onclick=\"refreshData('" + allCatUnique[i]+ "')\">"+allCatUnique[i]+"</a> </br>"
+                    "<button class=\"tablinks\" onclick=\"refreshData('"+allCatUnique[i]+"')\" id=\""+allCatUnique[i]+"\">"+allCatUnique[i]+"</button>";
+//                    "<a href=\"#\" onclick=\"refreshData('" + allCatUnique[i]+ "')\">"+allCatUnique[i]+"</a> </br>"
 
                  }
                  console.log(toFilterBy);
-                 document.getElementById("myBtnContainer").innerHTML = toFilterBy;
+                 document.getElementById("tab").innerHTML = toFilterBy;
             })
 
       .catch(function(error) {
@@ -80,7 +78,7 @@ console.log("Fetching data...");
         .then((response) => {
 
             var OBJ = JSON.parse(response);
-            console.log("Objects retrieved and parsed");
+            console.log("Objects retrieved and parsed.");
 
             // Sorting the object based on its status
             // Red will be displayed first, then amber, etc.
@@ -95,7 +93,7 @@ console.log("Fetching data...");
                 }
                 return statusEnum[a.status] - statusEnum[b.status];
             });
-            console.log("Objects sorted");
+            console.log("Objects sorted.");
             var txt = "<div class=\"grid-container\">";
             for(var i = 0; i < OBJ.length; i++){
                 txt = txt +
@@ -107,10 +105,10 @@ console.log("Fetching data...");
             }
             txt = txt + "</div>";
             document.getElementById("Monitor").innerHTML = txt;
-            console.log("Objects displayed");
+            console.log("Objects displayed.");
         })
-    .catch(function(error) {
-        console.error("Something died: " + error);
+  .catch(function(error) {
+  console.error("Something died!");
   });
 }
 
