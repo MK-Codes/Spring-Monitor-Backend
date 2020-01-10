@@ -1,32 +1,37 @@
 document.getElementById("defaultOpen").click();
 
+var code = [[${url}]];
+alert("URL: " + code);
+
 function openTab(evt, tabName) {
 
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
 
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
 
-  tablinks = document.getElementsByClassName("tablinks");
+    tablinks = document.getElementsByClassName("tablinks");
 
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
 
-  document.getElementById(tabName).style.display = "block";
-  evt.currentTarget.className += " active";
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " active";
 }
 
 function refreshData() {
-console.log("Fetching data...");
-  fetch("https://mk-codes.co.uk/json", {cache: "no-store"})
-  .then(response => response.text())
+
+    console.log("Fetching data");
+
+    fetch("https://mk-codes.co.uk/json", {cache: "no-store"})
+        .then(response => response.text())
         .then((response) => {
 
             var OBJ = JSON.parse(response);
-            console.log("Objects retrieved and parsed.");
+            console.log("Objects retrieved and parsed");
 
             // Sorting the object based on its status
             // Red will be displayed first, then amber, etc.
@@ -41,7 +46,7 @@ console.log("Fetching data...");
                 }
                 return statusEnum[a.status] - statusEnum[b.status];
             });
-            console.log("Objects sorted.");
+            console.log("Objects sorted");
             var txt = "<div class=\"grid-container\">";
             for(var i = 0; i < OBJ.length; i++){
                 txt = txt +
@@ -53,13 +58,13 @@ console.log("Fetching data...");
             }
             txt = txt + "</div>";
             document.getElementById("Monitor").innerHTML = txt;
-            console.log("Objects displayed.");
+            console.log("Objects displayed");
         })
-  .catch(function(error) {
-  console.error("Something died!");
+    .catch(function(error) {
+        console.error("Something died: " + error);
   });
 
 }
 
 window.onload = window.setInterval(refreshData, 20_000);
-window.onload(refreshData());
+window.onload = refreshData();

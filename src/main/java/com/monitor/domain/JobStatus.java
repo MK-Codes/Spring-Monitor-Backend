@@ -11,6 +11,7 @@ import java.util.List;
 @ToString
 @EqualsAndHashCode
 public class JobStatus {
+
     private String description;
     private String name;
     private String jsonFileName;

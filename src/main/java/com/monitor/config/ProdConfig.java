@@ -11,6 +11,7 @@ import org.springframework.web.client.RestTemplate;
 @Configuration
 @Profile("prod")
 public class ProdConfig {
+
     @Bean
     public String jsonURL() {
         log.info("Using production URL");
