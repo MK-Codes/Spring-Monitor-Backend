@@ -24,10 +24,10 @@ public class JobStatusService {
     private Gson gson;
 
     @Autowired
-    private String jsonURL;
+    private String getJsonURL;
 
     public List<JobStatus> generateJobStatus(){
-        String jobStatusFile = restTemplate.getForObject(jsonURL, String.class);
+        String jobStatusFile = restTemplate.getForObject(getJsonURL, String.class);
         List<JobStatus> allJobStatus = gson.fromJson(jobStatusFile, new TypeToken<List<JobStatus>>() {}.getType());
         Collections.sort(allJobStatus, new JobStatusComparitor());
         allJobStatus = replaceNewLine(allJobStatus);

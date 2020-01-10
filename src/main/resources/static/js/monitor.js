@@ -24,8 +24,8 @@ function openTab(evt, tabName) {
 }
 
 function generateTabs() {
-    // TODO
-    fetch("https://mk-codes.co.uk/json", {
+
+    fetch(/*[[${url}}]]*/ "", {
         cache: "no-store"
     })
     .then(response => response.text())
@@ -64,19 +64,19 @@ function refreshData(param) {
     var url = "";
     if (param) {
         if (param == "all") {
-            // TODO
-            url = "https://mk-codes.co.uk/json";
+
+            url = /*[[${url}]]*/ "https://mk-codes.co.uk/json";
         } else {
             // TODO
-            url = "https://mk-codes.co.uk/category/" + param;
+            url = /*[[${url}}]]*/ + param;
         }
 
         currentURL = url;
     } else if (currentURL !== "") {
         url = currentURL;
     } else if (!param || param === "") {
-        // TODO
-        url = "https://mk-codes.co.uk/json";
+
+        url = /*[[${url}]]*/ "https://mk-codes.co.uk/json";
     }
 
     console.log("CURRENT URL" + currentURL);

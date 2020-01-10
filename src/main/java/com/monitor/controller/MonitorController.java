@@ -20,7 +20,7 @@ public class MonitorController {
     private JobStatusService statusService;
 
     @Autowired
-    private String jsonURL;
+    private String getJsonURL;
 
     @GetMapping
     public String monitor(Model model){
@@ -33,7 +33,8 @@ public class MonitorController {
     public String monitorStatic(Model model) {
         //List<JobStatus> allJobs = statusService.generateJobStatus();
         //model.addAttribute("allJobs", allJobs);
-        model.addAttribute("url", jsonURL);
+        log.info("json: " + getJsonURL);
+        model.addAttribute("url", getJsonURL);
         return "monitor_static";
     }
 
