@@ -1,11 +1,12 @@
 console.log(getJSON());
 function getJSON(){
+    // TODO
     fetch("https://mk-codes.co.uk/json", {cache: "no-store"})
     .then((resp) => resp.json())
     .then(function(data){
         console.log(data);
     })
-    }
+}
 
 function populateBtnContainer(){
 
