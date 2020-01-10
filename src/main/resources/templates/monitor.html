@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<div class="tab">
+<div class="tab" style="display:none;">
     <button class="tablinks" onclick="openTab(event, 'Monitor')" id="defaultOpen">Monitor</button>
 </div>
 
@@ -40,13 +40,8 @@ function openTab(evt, tabName) {
 }
 var timer = setTimeout(function() {
             window.location='http://prdcldsbll03:7777/server_html_file/server_view.htm'
-        }, 20000);
+        }, 600000000);
 
-
-       window.setInterval(refreshData, 5_000);
-       function refreshData() {
-       alert("test");
-       }
 </script>
 </body>
 </html>
