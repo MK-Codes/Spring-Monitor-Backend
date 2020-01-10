@@ -36,4 +36,9 @@ public class MonitorController {
         model.addAttribute("url", jsonURL);
         return "monitor_static";
     }
+
+    @GetMapping("/test")
+    public String monitorFilter(){
+        return "filter";
+    }
 }

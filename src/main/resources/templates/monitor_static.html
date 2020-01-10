@@ -7,16 +7,26 @@
 </head>
 <body>
 
-    <div class="tab">
-        <button class="tablinks" onclick="openTab(event, 'Monitor')" id="defaultOpen">Monitor</button>
-    </div>
 
-    <div class="mainContainer">
-        <div id="Monitor" class="tabcontent">
+<div class="tab">
+    <button class="tablinks" onclick="openTab(event, 'Monitor')" id="defaultOpen">Monitor</button>
+</div>
+
+<div class="mainContainer">
+        <div id="myBtnContainer">
         </div>
-    </div>
+
+        <div id="Monitor" class="tabcontent">
+
+            <div class="mainContainer">
+                <div id="Monitor" class="tabcontent">
+                </div>
+            </div>
+        </div>
+</div>
 
     <script th:inline="javascript" th:src="@{/js/monitor.js}"></script>
+
 
 <script th:inline="javascript" >
     alert([[${url}]]);
