@@ -22,19 +22,25 @@ public class MonitorController {
     @Autowired
     private String getJsonURL;
 
+    @Autowired
+    private String getJsonURLFilter;
+
+    @Autowired
+    private String getRefreshPage;
+
     @GetMapping
     public String monitor(Model model){
         List<JobStatus> allJobs = statusService.generateJobStatus();
         model.addAttribute("allJobs", allJobs);
+        model.addAttribute("refreshTo",getRefreshPage);
         return "monitor";
     }
 
     @GetMapping("/static")
     public String monitorStatic(Model model) {
-        //List<JobStatus> allJobs = statusService.generateJobStatus();
-        //model.addAttribute("allJobs", allJobs);
         log.info("json: " + getJsonURL);
         model.addAttribute("url", getJsonURL);
+        model.addAttribute("urlFilter", getJsonURLFilter);
         return "monitor_static";
     }
 

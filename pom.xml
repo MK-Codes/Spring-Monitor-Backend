@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.monitor</groupId>
 	<artifactId>monitor</artifactId>
-	<version>0.9.0-PRERELEASE</version>
+	<version>1.0.0</version>
 	<name>Monitor</name>
 	<description>Monitor</description>
 

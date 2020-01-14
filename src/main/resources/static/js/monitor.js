@@ -25,12 +25,14 @@ function openTab(evt, tabName) {
 
 function generateTabs() {
 
-    fetch(/*[[${url}}]]*/ "", {
+    fetch(dataURL, {
         cache: "no-store"
     })
     .then(response => response.text())
     .then((response) => {
+
         var OBJ = JSON.parse(response);
+
         // Sorting the object based on its status
         // Red will be displayed first, then amber, etc.
         var allCat = [];
@@ -38,8 +40,6 @@ function generateTabs() {
             allCat.push(OBJ[i].category);
         }
         var allCatUnique = Array.from(new Set(allCat));
-        console.log("showing unique tabs")
-        console.log(allCatUnique);
 
         //                var toFilterBy = "<a href=\"#\" onclick=\"refreshData('all')\">all</a></br>";
         var toFilterBy = "<button class=\"tablinks\" onclick=\"refreshData('all')\" id=\"defaultOpen\">Monitor</button>";
@@ -50,7 +50,6 @@ function generateTabs() {
             //                    "<a href=\"#\" onclick=\"refreshData('" + allCatUnique[i]+ "')\">"+allCatUnique[i]+"</a> </br>"
 
         }
-        console.log(toFilterBy);
         document.getElementById("tab").innerHTML = toFilterBy;
     })
 
@@ -60,15 +59,13 @@ function generateTabs() {
 }
 
 function refreshData(param) {
-    console.log("Fetching data...");
     var url = "";
     if (param) {
         if (param == "all") {
 
-            url = /*[[${url}]]*/ "https://mk-codes.co.uk/json";
+            url = dataURL;
         } else {
-            // TODO
-            url = /*[[${url}}]]*/ + param;
+            url = dataURLFilter + param;
         }
 
         currentURL = url;
@@ -76,10 +73,8 @@ function refreshData(param) {
         url = currentURL;
     } else if (!param || param === "") {
 
-        url = /*[[${url}]]*/ "https://mk-codes.co.uk/json";
+        url = dataURL;
     }
-
-    console.log("CURRENT URL" + currentURL);
 
     fetch(url, {
         cache: "no-store"
@@ -88,7 +83,6 @@ function refreshData(param) {
     .then((response) => {
 
         var OBJ = JSON.parse(response);
-        console.log("Objects retrieved and parsed.");
 
         // Sorting the object based on its status
         // Red will be displayed first, then amber, etc.
@@ -103,7 +97,6 @@ function refreshData(param) {
             }
             return statusEnum[a.status] - statusEnum[b.status];
         });
-        console.log("Objects sorted.");
         var txt = "<div class=\"grid-container\">";
         for (var i = 0; i < OBJ.length; i++) {
             txt = txt +
@@ -115,7 +108,6 @@ function refreshData(param) {
         }
         txt = txt + "</div>";
         document.getElementById("Monitor").innerHTML = txt;
-        console.log("Objects displayed.");
     })
     .catch(function (error) {
         console.error("Something died!");

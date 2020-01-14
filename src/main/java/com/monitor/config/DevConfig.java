@@ -2,13 +2,11 @@ package com.monitor.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.env.Environment;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
@@ -38,9 +36,24 @@ public class DevConfig {
     }
 
     @Bean
+    public String getJsonURLFilter(){
+        return environment.getProperty("jsonurlfilter");
+    }
+
+    @Bean
+    public String getProxy() {
+        return environment.getProperty("proxy");
+    }
+
+    @Bean
+    public String getRefreshPage() {
+        return environment.getProperty("refreshto");
+    }
+
+    @Bean
     public RestTemplate restTemplate(RestTemplateBuilder builder, String getProxy) throws NoSuchAlgorithmException, KeyManagementException {
         SimpleClientHttpRequestFactory requestFactory = new SimpleClientHttpRequestFactory();
-        Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("", 80));
+        Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(getProxy, 80));
         requestFactory.setProxy(proxy);
 
         SSLContext ctx = SSLContext.getInstance("TLS");
