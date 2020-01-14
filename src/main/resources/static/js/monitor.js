@@ -54,7 +54,7 @@ function generateTabs() {
 
     .catch(function (error) {
         console.error("Something died!");
-    });*/
+    });
 }
 
 function refreshData(param) {
