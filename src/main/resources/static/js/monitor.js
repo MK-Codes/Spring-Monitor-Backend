@@ -24,7 +24,6 @@ function openTab(evt, tabName) {
 }
 
 function generateTabs() {
-
     fetch(dataURL, {
         cache: "no-store"
     })
@@ -55,7 +54,7 @@ function generateTabs() {
 
     .catch(function (error) {
         console.error("Something died!");
-    });
+    });*/
 }
 
 function refreshData(param) {
