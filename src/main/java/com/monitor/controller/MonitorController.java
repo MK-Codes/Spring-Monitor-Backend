@@ -38,7 +38,6 @@ public class MonitorController {
 
     @GetMapping("/static")
     public String monitorStatic(Model model) {
-        log.info("json: " + getJsonURL);
         model.addAttribute("url", getJsonURL);
         model.addAttribute("urlFilter", getJsonURLFilter);
         return "monitor_static";

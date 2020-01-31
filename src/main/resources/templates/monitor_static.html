@@ -10,7 +10,6 @@
 
 <div class="tab" id="tab">
     <button class="tablinks" onclick="openTab(event, 'Monitor')" id="defaultOpen">Monitor</button>
-    <button class="tablinks" onclick="openTab(event, 'Monitor')" id="test">Test</button>
 </div>
 <div class="mainContainer">
     <div id="myBtnContainer">
@@ -25,11 +24,10 @@
 
    /*<![CDATA[*/
     var dataURL = /*[[${url}]]*/ 'test';
-    var dataURLFilter = /*[[${urlFilter}]]*/ 'testFilter';
     /*]]>*/
 
 </script>
-<script type="text/javascript" th:src="@{/js/monitor.js}"></script>
+<script type="text/javascript" th:src="@{/js/monitor_tabs.js}"></script>
 
 </body>
 </html>

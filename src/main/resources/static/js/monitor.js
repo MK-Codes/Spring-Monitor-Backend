@@ -23,39 +23,7 @@ function openTab(evt, tabName) {
     evt.currentTarget.className += " active";
 }
 
-function generateTabs() {
-    fetch(dataURL, {
-        cache: "no-store"
-    })
-    .then(response => response.text())
-    .then((response) => {
 
-        var OBJ = JSON.parse(response);
-
-        // Sorting the object based on its status
-        // Red will be displayed first, then amber, etc.
-        var allCat = [];
-        for (i = 0; i < OBJ.length; i++) {
-            allCat.push(OBJ[i].category);
-        }
-        var allCatUnique = Array.from(new Set(allCat));
-
-        //                var toFilterBy = "<a href=\"#\" onclick=\"refreshData('all')\">all</a></br>";
-        var toFilterBy = "<button class=\"tablinks\" onclick=\"refreshData('all')\" id=\"defaultOpen\">Monitor</button>";
-
-        for (var i = 0; i < allCatUnique.length; i++) {
-            toFilterBy = toFilterBy +
-                "<button class=\"tablinks\" onclick=\"refreshData('" + allCatUnique[i] + "')\" id=\"" + allCatUnique[i] + "\">" + allCatUnique[i] + "</button>";
-            //                    "<a href=\"#\" onclick=\"refreshData('" + allCatUnique[i]+ "')\">"+allCatUnique[i]+"</a> </br>"
-
-        }
-        document.getElementById("tab").innerHTML = toFilterBy;
-    })
-
-    .catch(function (error) {
-        console.error("Something died!");
-    });
-}
 
 function refreshData(param) {
     var url = "";
@@ -82,7 +50,7 @@ function refreshData(param) {
     .then((response) => {
 
         var OBJ = JSON.parse(response);
-
+        generateTabs(OBJ);
         // Sorting the object based on its status
         // Red will be displayed first, then amber, etc.
 
@@ -109,10 +77,29 @@ function refreshData(param) {
         document.getElementById("Monitor").innerHTML = txt;
     })
     .catch(function (error) {
-        console.error("Something died!");
+        console.error("Something died: " + error);
     });
 }
 
-generateTabs();
+function generateTabs(OBJ) {
+
+    console.log("Generating tabs");
+    var allCat = [];
+
+    for (i = 0; i < OBJ.length; i++) {
+        allCat.push(OBJ[i].category);
+    }
+
+    var allCatUnique = Array.from(new Set(allCat));
+    var toFilterBy = "<button class=\"tablinks\" onclick=\"refreshData('all')\" id=\"defaultOpen\">Monitor</button>";
+
+    for (var i = 0; i < allCatUnique.length; i++) {
+        toFilterBy = toFilterBy + "<button class=\"tablinks\" onclick=\"refreshData('" +
+            allCatUnique[i] + "')\" id=\"" + allCatUnique[i] + "\">" + allCatUnique[i] + "</button>";
+    }
+    document.getElementById("tab").innerHTML = toFilterBy;
+    console.log("Tabs generated");
+}
+
 window.onload = window.setInterval(refreshData, 5_000);
 refreshData(currentURL);
