@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -28,6 +29,7 @@ public class MonitorController {
     @Autowired
     private String getRefreshPage;
 
+    @CrossOrigin
     @GetMapping
     public String monitor(Model model){
         List<JobStatus> allJobs = statusService.generateJobStatus();
@@ -36,6 +38,7 @@ public class MonitorController {
         return "monitor";
     }
 
+    @CrossOrigin
     @GetMapping("/static")
     public String monitorStatic(Model model) {
         model.addAttribute("url", getJsonURL);
@@ -43,6 +46,7 @@ public class MonitorController {
         return "monitor_static";
     }
 
+    @CrossOrigin
     @GetMapping("/test")
     public String monitorFilter(){
         return "filter";
